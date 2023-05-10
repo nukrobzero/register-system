@@ -61,7 +61,7 @@ export default async function handler(
         from_name: "Sumipol",
         from_email: "no-reply@sumipol.com",
         template_key: "15858645a02d5ed354",
-        content_html: `{"CF_HTMLContent": "<img alt='ts' src='https://api.qrserver.com/v1/create-qr-code/?data=${email}&amp;size=300x300'>","CF_Content":"${email}"}`,
+        content_html: `{"CF_HTMLContent": "<img alt='ts' src='https://api.qrserver.com/v1/create-qr-code/?data=${email}&amp;size=300x300'>","CF_FirstName":"${firstName}","CF_LastName":"${lastName}","CF_JobTitle":"${jobTitle}","CF_Company":"${company}"}`,
         report_type: "Full",
       };
       const sendEmail = await axios.post(

@@ -62,7 +62,9 @@ export default function Home() {
               className="space-y-6 shadow-lg p-12 bg-white rounded-b-md"
             >
               <div className="bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] rounded-lg text-white py-2 px-4 shadow-lg flex items-center cursor-default mb-4">
-                <h1 className="md:text-xl font-semibold">ลงทะเบียน (Register)</h1>
+                <h1 className="md:text-xl font-semibold">
+                  ลงทะเบียน (Register)
+                </h1>
               </div>
               <div>
                 <label
@@ -74,7 +76,12 @@ export default function Home() {
                 <input
                   type="text"
                   id="company-name"
-                  onChange={(e) => setCompany(e.target.value)}
+                  onChange={(e) =>
+                    setCompany(
+                      e.target.value.charAt(0).toUpperCase() +
+                        e.target.value.slice(1)
+                    )
+                  }
                   className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 bg-slate-100"
                   placeholder="Company name"
                   required
@@ -115,7 +122,12 @@ export default function Home() {
                 <input
                   type="text"
                   id="first-name"
-                  onChange={(e) => setFirstName(e.target.value)}
+                  onChange={(e) =>
+                    setFirstName(
+                      e.target.value.charAt(0).toUpperCase() +
+                        e.target.value.slice(1)
+                    )
+                  }
                   className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
                   placeholder=""
                   required
@@ -131,7 +143,12 @@ export default function Home() {
                 <input
                   type="text"
                   id="last-name"
-                  onChange={(e) => setLastName(e.target.value)}
+                  onChange={(e) =>
+                    setLastName(
+                      e.target.value.charAt(0).toUpperCase() +
+                        e.target.value.slice(1)
+                    )
+                  }
                   className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
                   placeholder=""
                   required
@@ -147,7 +164,12 @@ export default function Home() {
                 <input
                   type="text"
                   id="job-title"
-                  onChange={(e) => setJobTitle(e.target.value)}
+                  onChange={(e) =>
+                    setJobTitle(
+                      e.target.value.charAt(0).toUpperCase() +
+                        e.target.value.slice(1)
+                    )
+                  }
                   className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
                   placeholder=""
                   required
