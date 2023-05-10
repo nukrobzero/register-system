@@ -63,7 +63,7 @@ export default function Home() {
           {aferSubmit !== true ? (
             <form
               onSubmit={hendelSubmit}
-              className="space-y-6 shadow-lg p-12 bg-white rounded-b-md"
+              className="space-y-6 shadow-lg p-5 md:p-12 bg-white rounded-b-md"
             >
               <div className="bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] rounded-lg text-white py-2 px-4 shadow-lg flex items-center cursor-default mb-4">
                 <h1 className="md:text-xl font-semibold">
@@ -207,7 +207,7 @@ export default function Home() {
               ) : (
                 <button
                   type="submit"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-[45px] py-2.5 text-center"
+                  className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-[45px] py-2.5 text-center"
                 >
                   Submit
                 </button>
