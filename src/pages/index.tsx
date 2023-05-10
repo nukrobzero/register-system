@@ -110,7 +110,7 @@ export default function Home() {
                     placeholder="name@example.com"
                   />
                 </div>
-                <div className="pt-2 text-red-600">
+                <div className="pt-2 text-red-600 text-xs md:text-base">
                   <span>
                     {alert !== "" ? `อีเมล์ ${alert} มีการลงทะเบียนแล้ว` : ""}
                   </span>
