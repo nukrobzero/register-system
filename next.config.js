@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["api.qrserver.com"],
+    domains: ["api.qrserver.com", "www.sumipol.com"],
     formats: ["image/webp"],
   },
 };

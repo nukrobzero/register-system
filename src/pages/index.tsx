@@ -1,45 +1,164 @@
+import Headers from "@/components/Layout/header";
 import Layout from "@/components/Layout/layout";
+import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { AiOutlineMail } from "react-icons/ai";
 
 export default function Home() {
   const router = useRouter();
-  const [input, setInput] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
 
-  const handelClickPrint = (e: React.FormEvent) => {
+  const [aferSubmit, setAfterSubmit] = useState(false);
+
+  const hendelSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    router.push(`/print?data=${input}`);
+    if (firstName === "") return null;
+    const formData = {
+      company,
+      email,
+      firstName,
+      lastName,
+      jobTitle,
+    };
+    try {
+      const res = await axios.post(`/api/formRegister`, formData);
+      if (!res) return null;
+      setAfterSubmit(!aferSubmit);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <Layout>
-      <div className="flex flex-col justify-center h-screen">
-        <form
-          onSubmit={handelClickPrint}
-          className="flex flex-col justify-center items-center space-y-6 shadow-lg p-4 bg-gray-500 rounded-lg"
-        >
-          <div>
-            <label
-              htmlFor="base-input"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Input
-            </label>
-            <input
-              type="text"
-              id="base-input"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      <Headers content="ลงทะเบียน" title="Register" />
+      <div>
+        <div className="flex flex-col justify-center h-auto py-12 w-80 md:w-[50rem]">
+          <div className="flex justify-center">
+            <Image
+              src={`https://www.sumipol.com/wp-content/uploads/2023/05/banner-SxM-2-1.png.webp`}
+              width={1920}
+              height={500}
+              alt="bg-cover"
+              layout="responsive"
+              style={{ objectFit: "cover" }}
+              className="rounded-t-md"
             />
           </div>
-          <button
-            type="submit"
-            className="text-xl font-bold bg-blue-600 hover:bg-blue-800 text-white px-4 py-2 rounded-lg"
-          >
-            print qr
-          </button>
-        </form>
+          {aferSubmit !== true ? (
+            <form
+              onSubmit={hendelSubmit}
+              className="space-y-6 shadow-lg p-12 bg-white rounded-b-md"
+            >
+              <div className="bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] rounded-lg text-white py-2 px-4 shadow-lg flex items-center cursor-default mb-4">
+                <h1 className="text-xl font-semibold">ลงทะเบียน (Register)</h1>
+              </div>
+              <div>
+                <label
+                  htmlFor="company-name"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  Company name
+                </label>
+                <input
+                  type="text"
+                  id="company-name"
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 bg-slate-100"
+                  placeholder="Company name"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  Email
+                </label>
+                <div className="relative">
+                  <div className="absolute text-gray-500 inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <AiOutlineMail size={20} />
+                  </div>
+                  <input
+                    type="email"
+                    id="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 pl-10"
+                    placeholder="name@example.com"
+                  />
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="first-name"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  First name
+                </label>
+                <input
+                  type="text"
+                  id="first-name"
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
+                  placeholder=""
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="last-name"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  Last name
+                </label>
+                <input
+                  type="text"
+                  id="last-name"
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
+                  placeholder=""
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="job-title"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  Job title
+                </label>
+                <input
+                  type="text"
+                  id="job-title"
+                  onChange={(e) => setJobTitle(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
+                  placeholder=""
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+              >
+                Submit
+              </button>
+            </form>
+          ) : (
+            <div className="shadow-lg p-12 bg-white rounded-b-md">
+              <h1 className="text-base text-black font-semibold text-center">
+                ขอบคุณที่ท่านได้ลงทะเบียนล่วงหน้า
+                ทางเราได้ส่งบัตรเข้างานไปให้ท่านทางอีเมล์
+              </h1>
+            </div>
+          )}
+        </div>
       </div>
     </Layout>
   );
