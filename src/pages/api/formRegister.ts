@@ -37,6 +37,7 @@ export default async function handler(
       );
       if (response.data === "Record with email already exists") {
         res.status(202).json(response.data);
+        return;
       }
       //get session ID TaxiMail
       //   const resTaxiMail = await axios.post(
