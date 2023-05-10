@@ -1,6 +1,7 @@
 import Headers from "@/components/Layout/header";
 import Layout from "@/components/Layout/layout";
 import axios from "axios";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -46,7 +47,12 @@ export default function Home() {
 
   return (
     <Layout>
-      <Headers content="ลงทะเบียน" title="Register " />
+      <Head>
+        <title>Register - Sumipol x Mitutoyo Day 2023</title>
+        <meta name="description" content="ลงทะเบียน" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
+      </Head>
       <div>
         <div className="flex flex-col justify-center h-auto py-12 w-80 md:w-[50rem]">
           <div className="flex justify-center">
@@ -86,7 +92,7 @@ export default function Home() {
                         e.target.value.slice(1)
                     )
                   }
-                  className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 bg-slate-100"
+                  className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
                   placeholder="Company name"
                   required
                 />
@@ -183,7 +189,7 @@ export default function Home() {
                 <button
                   disabled
                   type="button"
-                  className="py-2.5 px-5 w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center justify-center"
+                  className="py-2.5 px-5 w-full md:w-auto text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center justify-center"
                 >
                   <svg
                     aria-hidden="true"
