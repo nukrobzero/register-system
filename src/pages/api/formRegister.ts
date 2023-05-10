@@ -35,7 +35,9 @@ export default async function handler(
         `https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=addData`,
         formData
       );
-      if (!response) return;
+      if (response.data === "Record with email already exists") {
+        res.status(202).json(response.data);
+      }
       //get session ID TaxiMail
       const resTaxiMail = await axios.post(
         "https://api.taximail.com/v2/user/login",
@@ -54,7 +56,7 @@ export default async function handler(
       //data for send mail
       const dataSendMail = {
         transactional_group_name: "Default",
-        subject: "Test From NextJS",
+        subject: "Register Ticket for Sumipol x Mitutoyo Day 2023",
         to_email: email,
         from_name: "Sumipol",
         from_email: "no-reply@sumipol.com",
@@ -71,7 +73,7 @@ export default async function handler(
           },
         }
       );
-      res.status(200).json(sendEmail.data);
+      res.status(200).json(response.data);
     } catch (error) {
       res.status(500).json(error);
     }

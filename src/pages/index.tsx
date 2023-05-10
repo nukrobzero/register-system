@@ -15,6 +15,7 @@ export default function Home() {
   const [jobTitle, setJobTitle] = useState("");
 
   const [aferSubmit, setAfterSubmit] = useState(false);
+  const [alert, setAlert] = useState("");
 
   const hendelSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,8 +29,12 @@ export default function Home() {
     };
     try {
       const res = await axios.post(`/api/formRegister`, formData);
-      if (!res) return null;
+      if (res.status === 202) {
+        setAlert(email);
+        return null;
+      }
       setAfterSubmit(!aferSubmit);
+      setAlert("");
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +42,7 @@ export default function Home() {
 
   return (
     <Layout>
-      <Headers content="ลงทะเบียน" title="Register" />
+      <Headers content="ลงทะเบียน" title="Register " />
       <div>
         <div className="flex flex-col justify-center h-auto py-12 w-80 md:w-[50rem]">
           <div className="flex justify-center">
@@ -57,7 +62,7 @@ export default function Home() {
               className="space-y-6 shadow-lg p-12 bg-white rounded-b-md"
             >
               <div className="bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] rounded-lg text-white py-2 px-4 shadow-lg flex items-center cursor-default mb-4">
-                <h1 className="text-xl font-semibold">ลงทะเบียน (Register)</h1>
+                <h1 className="md:text-xl font-semibold">ลงทะเบียน (Register)</h1>
               </div>
               <div>
                 <label
@@ -93,6 +98,11 @@ export default function Home() {
                     className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 pl-10"
                     placeholder="name@example.com"
                   />
+                </div>
+                <div className="pt-2 text-red-600">
+                  <span>
+                    {alert !== "" ? `อีเมล์ ${alert} มีการลงทะเบียนแล้ว` : ""}
+                  </span>
                 </div>
               </div>
               <div>
