@@ -57,7 +57,7 @@ export default async function handler(
       //data for send mail
       const dataSendMail = {
         transactional_group_name: "Default",
-        subject: "Register Ticket for Sumipol x Mitutoyo Day 2023",
+        subject: "Ticket for Sumipol x Mitutoyo Day 2023",
         to_email: email,
         from_name: "Sumipol",
         from_email: "no-reply@sumipol.com",
