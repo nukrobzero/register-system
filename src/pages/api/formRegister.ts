@@ -39,20 +39,20 @@ export default async function handler(
         res.status(202).json(response.data);
       }
       //get session ID TaxiMail
-      //   const resTaxiMail = await axios.post(
-      //     "https://api.taximail.com/v2/user/login",
-      //     {
-      //       api_key: process.env.TAXI_MAIL_API_KEY,
-      //       secret_key: process.env.TAXI_MAIL_SECRET_KEY,
-      //     },
-      //     {
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //     }
-      //   );
+      const resTaxiMail = await axios.post(
+        "https://api.taximail.com/v2/user/login",
+        {
+          api_key: process.env.TAXI_MAIL_API_KEY,
+          secret_key: process.env.TAXI_MAIL_SECRET_KEY,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      //   if (!resTaxiMail) return;
+      if (!resTaxiMail) return;
       //data for send mail
       const dataSendMail = {
         transactional_group_name: "Default",
@@ -69,11 +69,11 @@ export default async function handler(
         dataSendMail,
         {
           headers: {
-            Authorization: `Bearer ${process.env.TAXI_MAIL_SESSION}`,
+            Authorization: `Bearer ${resTaxiMail.data.data.session_id}`,
           },
         }
       );
-      res.status(200).json(sendEmail.data);
+      res.status(200).json(response.data);
     } catch (error) {
       res.status(500).json(error);
     }
