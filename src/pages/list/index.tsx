@@ -8,7 +8,7 @@ import Pagination from "@/components/Pagination";
 import Layout from "@/components/Layout/layout";
 import Head from "next/head";
 import { GetStaticProps } from "next";
-import Generate from "./generate";
+import Generate from "../../components/generate";
 
 type Props = {
   page: any;

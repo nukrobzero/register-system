@@ -1,5 +1,3 @@
-"use client";
-
 import { useReactToPrint } from "react-to-print";
 import React, { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
@@ -36,9 +34,7 @@ export default function Generate({ btnOnClick, qrData }: Props) {
   }, [qrData]);
 
   //checkin regis
-  const hendleCheckin = async () => {
-    
-  };
+  // const hendleCheckin = async () => {};
   return (
     <div>
       <div className="fixed top-0 left-0 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-50 z-[99]">
