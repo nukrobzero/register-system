@@ -159,5 +159,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const list = getList.data;
   return {
     props: { page: list },
+    revalidate: 1,
   };
 };
