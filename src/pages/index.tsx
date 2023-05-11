@@ -1,11 +1,14 @@
-import Headers from "@/components/Layout/header";
 import Layout from "@/components/Layout/layout";
 import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { AiOutlineMail } from "react-icons/ai";
+import {
+  AiOutlineMail,
+  AiOutlinePhone,
+  AiOutlineArrowLeft,
+} from "react-icons/ai";
 
 export default function Home() {
   const router = useRouter();
@@ -14,6 +17,7 @@ export default function Home() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [jobTitle, setJobTitle] = useState("");
+  const [phone, setPhone] = useState("");
 
   const [aferSubmit, setAfterSubmit] = useState(false);
   const [alert, setAlert] = useState("");
@@ -29,6 +33,7 @@ export default function Home() {
       firstName,
       lastName,
       jobTitle,
+      phone,
     };
     try {
       const res = await axios.post(`/api/formRegister`, formData);
@@ -99,31 +104,6 @@ export default function Home() {
               </div>
               <div>
                 <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-black"
-                >
-                  Email
-                </label>
-                <div className="relative">
-                  <div className="absolute text-gray-500 inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <AiOutlineMail size={20} />
-                  </div>
-                  <input
-                    type="email"
-                    id="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 pl-10"
-                    placeholder="name@example.com"
-                  />
-                </div>
-                <div className="pt-2 text-red-600 text-xs md:text-base">
-                  <span>
-                    {alert !== "" ? `อีเมล์ ${alert} มีการลงทะเบียนแล้ว` : ""}
-                  </span>
-                </div>
-              </div>
-              <div>
-                <label
                   htmlFor="first-name"
                   className="block mb-2 text-sm font-medium text-black"
                 >
@@ -163,6 +143,68 @@ export default function Home() {
                   placeholder="Last name"
                   required
                 />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  Email
+                </label>
+                <div className="relative">
+                  <div className="absolute text-gray-500 inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <AiOutlineMail size={20} />
+                  </div>
+                  <input
+                    type="email"
+                    id="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 pl-10"
+                    placeholder="name@example.com"
+                  />
+                </div>
+                <div className="pt-2 text-red-600 text-xs md:text-base">
+                  <span>
+                    {alert !== "" ? `อีเมล์ ${alert} มีการลงทะเบียนแล้ว` : ""}
+                  </span>
+                </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="phone-number"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  Phone number
+                </label>
+                <div className="relative">
+                  <div className="absolute text-gray-500 inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <AiOutlinePhone
+                      size={20}
+                      style={{ transform: "rotate(90deg)" }}
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    id="phone-number"
+                    onChange={(e) => {
+                      const input = e.target.value
+                        .replace(/\D/g, "")
+                        .substring(0, 10);
+                      const match = input.match(/^(\d{2})(\d{3})(\d{4})$/);
+                      const matchPhone = input.match(/^(\d{3})(\d{3})(\d{4})$/);
+                      if (match) {
+                        e.target.value = `${match[1]}-${match[2]}-${match[3]}`;
+                      } else if (matchPhone) {
+                        e.target.value = `${matchPhone[1]}-${matchPhone[2]}-${matchPhone[3]}`;
+                      } else {
+                        e.target.value = input;
+                      }
+                      setPhone(e.target.value);
+                    }}
+                    className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 pl-10"
+                    placeholder="02-3456-789, 012-345-6789"
+                  />
+                </div>
               </div>
               <div>
                 <label
@@ -221,10 +263,23 @@ export default function Home() {
             </form>
           ) : (
             <div className="shadow-lg p-12 bg-white rounded-b-md">
-              <h1 className="text-base text-black font-semibold text-center">
-                ขอบคุณที่ท่านได้ลงทะเบียนล่วงหน้า
-                ทางเราได้ส่งบัตรเข้างานไปให้ท่านทางอีเมล์
-              </h1>
+              <div className="flex flex-col justify-center items-center space-y-4">
+                <h1 className="text-base text-black font-semibold text-center">
+                  ขอบคุณที่ท่านได้ลงทะเบียนล่วงหน้า
+                  ทางเราได้ส่งบัตรเข้างานไปให้ท่านทางอีเมล์
+                </h1>
+                <button
+                  onClick={() => setAfterSubmit(false)}
+                  className="hover:underline hover:text-blue-400"
+                >
+                  <span className="flex flex-row items-center space-x-1">
+                    <span>
+                      <AiOutlineArrowLeft size={20} />
+                    </span>
+                    <span>ย้อนกลับ</span>
+                  </span>
+                </button>
+              </div>
             </div>
           )}
         </div>

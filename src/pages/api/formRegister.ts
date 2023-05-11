@@ -7,7 +7,20 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { company, email, firstName, lastName, jobTitle } = req.body;
+    const { company, email, firstName, lastName, jobTitle, phone } = req.body;
+    //check input
+    if (
+      company === undefined &&
+      email === undefined &&
+      firstName === undefined &&
+      lastName === undefined &&
+      jobTitle === undefined &&
+      phone === undefined
+    ) {
+      res.status(401).json({ message: "no have paremeter" });
+      return;
+    }
+
     const id = uuidv4();
     const now = new Date();
     const options = {
@@ -30,6 +43,7 @@ export default async function handler(
     formData.append("LASTNAME", lastName);
     formData.append("JOBTITLE", jobTitle);
     formData.append("TIMESTAMP", timestamp);
+    formData.append("PHONE", phone);
     try {
       const response = await axios.post(
         `https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=addData`,
@@ -78,5 +92,12 @@ export default async function handler(
     } catch (error) {
       res.status(500).json(error);
     }
+  } 
+  // HTTP method not supported!
+  else {
+    res.setHeader("Allow", ["GET","DELETE", "PUT", "PATCH"]);
+    res
+      .status(405)
+      .json({ message: `HTTP method ${req.method} is not supported.` });
   }
 }
