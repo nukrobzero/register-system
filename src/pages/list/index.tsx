@@ -24,6 +24,13 @@ export default function TableDefault({ page }: Props) {
   // Data/page
   const [perPage, setPerPage] = useState(10);
 
+  //Send CheckIn register after print QR
+  const checkInPrintQR = async () => {
+    setIsOpenPopUp(false)
+    "use server"
+    const resDataCheckIn = await axios.post(``)
+  };
+
   // filter the blogs based on the search query
   const filteredData =
     page &&
@@ -126,6 +133,7 @@ export default function TableDefault({ page }: Props) {
                           <div>
                             <Generate
                               btnOnClick={() => setIsOpenPopUp(false)}
+                              btnCheckIn={checkInPrintQR}
                               //@ts-ignore
                               qrData={valueDataToQR}
                             />
