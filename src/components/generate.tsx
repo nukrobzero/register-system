@@ -6,6 +6,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 
 interface Props {
   btnOnClick: any;
+  btnCheckIn: any;
   qrData: {
     EMAIL: string;
     COMPANY: string;
@@ -15,7 +16,7 @@ interface Props {
   };
 }
 
-export default function Generate({ btnOnClick, qrData }: Props) {
+export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
   const [value, setValue] = useState("");
   const componentRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
@@ -53,7 +54,7 @@ export default function Generate({ btnOnClick, qrData }: Props) {
               onClick={() => {
                 handlePrint();
                 setTimeout(() => {
-                  btnOnClick();
+                  btnCheckIn();
                 }, 1000);
               }}
             >
