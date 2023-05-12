@@ -86,7 +86,7 @@ export default function Home() {
                   htmlFor="company-name"
                   className="block mb-2 text-sm font-medium text-black"
                 >
-                  Company name
+                  Company name<span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -107,7 +107,7 @@ export default function Home() {
                   htmlFor="first-name"
                   className="block mb-2 text-sm font-medium text-black"
                 >
-                  First name
+                  First name<span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -128,7 +128,7 @@ export default function Home() {
                   htmlFor="last-name"
                   className="block mb-2 text-sm font-medium text-black"
                 >
-                  Last name
+                  Last name<span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
@@ -149,7 +149,7 @@ export default function Home() {
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-black"
                 >
-                  Email
+                  Email<span className="text-red-600">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute text-gray-500 inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -174,7 +174,7 @@ export default function Home() {
                   htmlFor="phone-number"
                   className="block mb-2 text-sm font-medium text-black"
                 >
-                  Phone number
+                  Phone number<span className="text-red-600">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute text-gray-500 inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -203,6 +203,7 @@ export default function Home() {
                     }}
                     className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100 pl-10"
                     placeholder="02-3456-789, 012-345-6789"
+                    required
                   />
                 </div>
               </div>
@@ -211,7 +212,7 @@ export default function Home() {
                   htmlFor="job-title"
                   className="block mb-2 text-sm font-medium text-black"
                 >
-                  Job title
+                  Job title<span className="text-red-600">*</span>
                 </label>
                 <input
                   type="text"
