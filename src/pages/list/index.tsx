@@ -26,9 +26,34 @@ export default function TableDefault({ page }: Props) {
 
   //Send CheckIn register after print QR
   const checkInPrintQR = async () => {
-    setIsOpenPopUp(false)
-    "use server"
-    const resDataCheckIn = await axios.post(``)
+    "use server";
+    setIsOpenPopUp(false);
+    const now = new Date();
+    const options = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZone: "Asia/Bangkok",
+    };
+    //@ts-ignore
+    const timestamp = now.toLocaleString("en-GB", options);
+
+    const checkInData = new FormData();
+    //@ts-ignore
+    checkInData.append("ID", valueDataToQR.ID);
+    checkInData.append("CHECKIND1", timestamp);
+
+    try {
+      await axios.post(
+        "https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=addCheckIn",
+        checkInData
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // filter the blogs based on the search query

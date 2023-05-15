@@ -76,9 +76,10 @@ export default async function handler(
         from_name: "Sumipol",
         from_email: "no-reply@sumipol.com",
         template_key: "15858645a02d5ed354",
-        content_html: `{"CF_HTMLContent": "<img alt='ts' src='https://api.qrserver.com/v1/create-qr-code/?data=${email}&amp;size=300x300'>","CF_FirstName":"${firstName}","CF_LastName":"${lastName}","CF_JobTitle":"${jobTitle}","CF_Company":"${company}"}`,
+        content_html: `{"CF_HTMLContent": "<img alt='ts' src='https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${email}'>","CF_FirstName":"${firstName}","CF_LastName":"${lastName}","CF_JobTitle":"${jobTitle}","CF_Company":"${company}"}`,
         report_type: "Full",
       };
+      //https://api.qrserver.com/v1/create-qr-code/?data=${email}&amp;size=300x300
       const sendEmail = await axios.post(
         `https://api.taximail.com/v2/transactional`,
         dataSendMail,
@@ -92,10 +93,10 @@ export default async function handler(
     } catch (error) {
       res.status(500).json(error);
     }
-  } 
+  }
   // HTTP method not supported!
   else {
-    res.setHeader("Allow", ["GET","DELETE", "PUT", "PATCH"]);
+    res.setHeader("Allow", ["GET", "DELETE", "PUT", "PATCH"]);
     res
       .status(405)
       .json({ message: `HTTP method ${req.method} is not supported.` });

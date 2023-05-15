@@ -27,8 +27,8 @@ export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
 
   useEffect(() => {
     const generateQR = async () => {
-      const qrCode = await QRCode.toDataURL(`${qrData.EMAIL}`);
-      //const qrCode = `https://api.qrserver.com/v1/create-qr-code/?data=${qrData}&size=[300]x[300]`;
+      //const qrCode = await QRCode.toDataURL(`${qrData.EMAIL}`);
+      const qrCode = `https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=${qrData.EMAIL}`;
       setValue(qrCode);
     };
     generateQR();
@@ -71,11 +71,10 @@ export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
             <h1>{qrData.JOBTITLE}</h1>
             <h1>{qrData.COMPANY}</h1>
             <Image
-              src={value}
+              src={`${value}`}
               width={300}
               height={300}
-              alt="ts"
-              layout="responsive"
+              alt={qrData.EMAIL}
               className="!w-[300px] !h-[300px]"
             />
           </div>
