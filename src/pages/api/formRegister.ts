@@ -7,7 +7,23 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
-    const { company, email, firstName, lastName, jobTitle, phone } = req.body;
+    const {
+      company,
+      email,
+      firstName,
+      lastName,
+      jobTitle,
+      phone,
+      selectDate,
+      checkbox1,
+      checkbox2,
+      checkbox3,
+      checkbox4,
+      checkbox5,
+      checkbox6,
+      checkbox7,
+      checkbox8,
+    } = req.body;
     //check input
     if (
       company === undefined &&
@@ -44,6 +60,15 @@ export default async function handler(
     formData.append("JOBTITLE", jobTitle);
     formData.append("TIMESTAMP", timestamp);
     formData.append("PHONE", phone);
+    formData.append("DateJoin", selectDate);
+    formData.append("Choice1", checkbox1);
+    formData.append("Choice2", checkbox2);
+    formData.append("Choice3", checkbox3);
+    formData.append("Choice4", checkbox4);
+    formData.append("Choice5", checkbox5);
+    formData.append("Choice6", checkbox6);
+    formData.append("Choice7", checkbox7);
+    formData.append("Choice8", checkbox8);
     try {
       const response = await axios.post(
         `https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=addData`,

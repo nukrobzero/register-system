@@ -3,7 +3,7 @@ import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 import {
   AiOutlineMail,
   AiOutlinePhone,
@@ -22,6 +22,15 @@ export default function Home() {
   const [aferSubmit, setAfterSubmit] = useState(false);
   const [alert, setAlert] = useState("");
   const [button, setButon] = useState(false);
+  const [selectDate, setSelectDate] = useState<string>("");
+  const [checkbox1, setCheckBox1] = useState<string[]>([]);
+  const [checkbox2, setCheckBox2] = useState<string[]>([]);
+  const [checkbox3, setCheckBox3] = useState<string[]>([]);
+  const [checkbox4, setCheckBox4] = useState<string[]>([]);
+  const [checkbox5, setCheckBox5] = useState<string[]>([]);
+  const [checkbox6, setCheckBox6] = useState<string[]>([]);
+  const [checkbox7, setCheckBox7] = useState<string[]>([]);
+  const [checkbox8, setCheckBox8] = useState<string[]>([]);
 
   const hendelSubmit = async (e: React.FormEvent) => {
     setButon(true);
@@ -34,7 +43,17 @@ export default function Home() {
       lastName,
       jobTitle,
       phone,
+      selectDate,
+      checkbox1: checkbox1[0],
+      checkbox2: checkbox2[0],
+      checkbox3: checkbox3[0],
+      checkbox4: checkbox4[0],
+      checkbox5: checkbox5[0],
+      checkbox6: checkbox6[0],
+      checkbox7: checkbox7[0],
+      checkbox8: checkbox8[0],
     };
+    console.log(formData);
     try {
       const res = await axios.post(`/api/formRegister`, formData);
       if (res.status === 202) {
@@ -45,6 +64,15 @@ export default function Home() {
       setAfterSubmit(!aferSubmit);
       setButon(false);
       setAlert("");
+      setSelectDate("");
+      setCheckBox1([]);
+      setCheckBox2([]);
+      setCheckBox3([]);
+      setCheckBox4([]);
+      setCheckBox5([]);
+      setCheckBox6([]);
+      setCheckBox7([]);
+      setCheckBox8([]);
     } catch (error) {
       console.log(error);
     }
@@ -228,6 +256,536 @@ export default function Home() {
                   required
                 />
               </div>
+              <div>
+                <label
+                  htmlFor="joinDate"
+                  className="block mb-2 text-sm font-medium text-black"
+                >
+                  ท่านสนใจมาร่วมงานวันไหน<span className="text-red-600">*</span>
+                </label>
+                <select
+                  onChange={(e) => {
+                    setSelectDate(e.target.value);
+                    setCheckBox1([]);
+                    setCheckBox2([]);
+                    setCheckBox3([]);
+                    setCheckBox4([]);
+                    setCheckBox5([]);
+                    setCheckBox6([]);
+                    setCheckBox7([]);
+                    setCheckBox8([]);
+                  }}
+                  required
+                  className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
+                >
+                  <option value={``}>โปรดเลือก</option>
+                  <option value={`14 June`}>14 มิถุนายน</option>
+                  <option value={`15 June`}>15 มิถุนายน</option>
+                  <option value={`14-15 June`}>14-15 มิถุนายน</option>
+                </select>
+              </div>
+
+              {selectDate === "14 June" ? (
+                <div>
+                  <label
+                    htmlFor="seminar"
+                    className="block mb-2 text-sm font-medium text-black"
+                  >
+                    สนใจเข้าร่วมงามสัมมนาเรื่องใด
+                    <span className="text-red-600">*</span>
+                  </label>
+                  <div className="grid grid-cols-1 gap-2 text-sm">
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping1"
+                        name="topping1"
+                        value={`การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox1([...checkbox1, e.target.value]);
+                          } else {
+                            setCheckBox1(
+                              checkbox1.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox1.includes(
+                          `การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-blue-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงเช้า
+                        </span>
+                        การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping2"
+                        name="topping2"
+                        value={`การจัดการเครื่องมือวัดพื้นฐาน การบำรุงรักษาตลอดจนการซ่อมแซม (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox2([...checkbox2, e.target.value]);
+                          } else {
+                            setCheckBox2(
+                              checkbox2.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox2.includes(
+                          `การจัดการเครื่องมือวัดพื้นฐาน การบำรุงรักษาตลอดจนการซ่อมแซม (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-blue-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงเช้า
+                        </span>
+                        การจัดการเครื่องมือวัดพื้นฐาน
+                        การบำรุงรักษาตลอดจนการซ่อมแซม
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping3"
+                        name="topping3"
+                        value={`นวัตกรรมการวัดระนาบผิว การวัดความเรียบผิวและการวัดรูปร่างที่มีความแม่นยำสูง (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox3([...checkbox3, e.target.value]);
+                          } else {
+                            setCheckBox3(
+                              checkbox3.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox3.includes(
+                          `นวัตกรรมการวัดระนาบผิว การวัดความเรียบผิวและการวัดรูปร่างที่มีความแม่นยำสูง (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-orange-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงบ่าย
+                        </span>
+                        นวัตกรรมการวัดระนาบผิว
+                        การวัดความเรียบผิวและการวัดรูปร่างที่มีความแม่นยำสูง
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping4"
+                        name="topping4"
+                        value={`การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox4([...checkbox4, e.target.value]);
+                          } else {
+                            setCheckBox4(
+                              checkbox4.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox4.includes(
+                          `การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-orange-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงบ่าย
+                        </span>
+                        การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+              {selectDate === "15 June" ? (
+                <div>
+                  <label
+                    htmlFor="seminar"
+                    className="block mb-2 text-sm font-medium text-black"
+                  >
+                    สนใจเข้าร่วมงามสัมมนาเรื่องใด
+                    <span className="text-red-600">*</span>
+                  </label>
+                  <div className="grid grid-cols-1 gap-2 text-sm">
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping1"
+                        name="topping1"
+                        value={`นวัตกรรมการวัดโดยใช้กล้องสำหรับอุตสาหกรรม (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox1([...checkbox1, e.target.value]);
+                          } else {
+                            setCheckBox1(
+                              checkbox1.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox1.includes(
+                          `นวัตกรรมการวัดโดยใช้กล้องสำหรับอุตสาหกรรม (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-blue-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงเช้า
+                        </span>
+                        นวัตกรรมการวัดโดยใช้กล้องสำหรับอุตสาหกรรม
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping2"
+                        name="topping2"
+                        value={`การจัดการเครื่องมือวัดพื้นฐาน การบำรุงรักษาตลอดจนการซ่อมแซม (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox2([...checkbox2, e.target.value]);
+                          } else {
+                            setCheckBox2(
+                              checkbox2.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox2.includes(
+                          `การจัดการเครื่องมือวัดพื้นฐาน การบำรุงรักษาตลอดจนการซ่อมแซม (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-blue-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงเช้า
+                        </span>
+                        การจัดการเครื่องมือวัดพื้นฐาน
+                        การบำรุงรักษาตลอดจนการซ่อมแซม
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping3"
+                        name="topping3"
+                        value={`การทดสอบความแข็ง ระดับพื้นฐานและการสอบเทียบ (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox3([...checkbox3, e.target.value]);
+                          } else {
+                            setCheckBox3(
+                              checkbox3.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox3.includes(
+                          `การทดสอบความแข็ง ระดับพื้นฐานและการสอบเทียบ (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-orange-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงบ่าย
+                        </span>
+                        การทดสอบความแข็ง ระดับพื้นฐานและการสอบเทียบ
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping4"
+                        name="topping4"
+                        value={`การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox4([...checkbox4, e.target.value]);
+                          } else {
+                            setCheckBox4(
+                              checkbox4.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox4.includes(
+                          `การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-orange-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงบ่าย
+                        </span>
+                        การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
+              {selectDate === "14-15 June" ? (
+                <div>
+                  <label
+                    htmlFor="seminar"
+                    className="block mb-2 text-sm font-medium text-black"
+                  >
+                    สนใจเข้าร่วมงามสัมมนาเรื่องใด
+                    <span className="text-red-600">*</span>
+                  </label>
+                  <div className="grid grid-cols-1 gap-2 text-sm">
+                    <h1 className="ml-4">14 มิถุนายน</h1>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping1"
+                        name="topping1"
+                        value={`การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM (14 June)`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox1([...checkbox1, e.target.value]);
+                          } else {
+                            setCheckBox1(
+                              checkbox1.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox1.includes(
+                          `การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM (14 June)`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-blue-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงเช้า 14 มิถุนายน
+                        </span>
+                        การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping2"
+                        name="topping2"
+                        value={`การจัดการเครื่องมือวัดพื้นฐาน การบำรุงรักษาตลอดจนการซ่อมแซม (14 June)`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox2([...checkbox2, e.target.value]);
+                          } else {
+                            setCheckBox2(
+                              checkbox2.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox2.includes(
+                          `การจัดการเครื่องมือวัดพื้นฐาน การบำรุงรักษาตลอดจนการซ่อมแซม (14 June)`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-blue-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงเช้า 14 มิถุนายน
+                        </span>
+                        การจัดการเครื่องมือวัดพื้นฐาน
+                        การบำรุงรักษาตลอดจนการซ่อมแซม
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping3"
+                        name="topping3"
+                        value={`นวัตกรรมการวัดระนาบผิว การวัดความเรียบผิวและการวัดรูปร่างที่มีความแม่นยำสูง (14 June)`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox3([...checkbox3, e.target.value]);
+                          } else {
+                            setCheckBox3(
+                              checkbox3.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox3.includes(
+                          `นวัตกรรมการวัดระนาบผิว การวัดความเรียบผิวและการวัดรูปร่างที่มีความแม่นยำสูง (14 June)`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-orange-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงบ่าย 14 มิถุนายน
+                        </span>
+                        นวัตกรรมการวัดระนาบผิว
+                        การวัดความเรียบผิวและการวัดรูปร่างที่มีความแม่นยำสูง
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping4"
+                        name="topping4"
+                        value={`การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ (14 June)`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox4([...checkbox4, e.target.value]);
+                          } else {
+                            setCheckBox4(
+                              checkbox4.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox4.includes(
+                          `การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ (14 June)`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-orange-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงบ่าย 14 มิถุนายน
+                        </span>
+                        การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ
+                      </span>
+                    </div>
+                    <h1 className="ml-4 mt-2">15 มิถุนายน</h1>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping5"
+                        name="topping5"
+                        value={`นวัตกรรมการวัดโดยใช้กล้องสำหรับอุตสาหกรรม (15 June)`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox5([...checkbox5, e.target.value]);
+                          } else {
+                            setCheckBox5(
+                              checkbox5.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox5.includes(
+                          `นวัตกรรมการวัดโดยใช้กล้องสำหรับอุตสาหกรรม (15 June)`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-blue-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงเช้า 15 มิถุนายน
+                        </span>
+                        นวัตกรรมการวัดโดยใช้กล้องสำหรับอุตสาหกรรม
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping6"
+                        name="topping6"
+                        value={`การจัดการเครื่องมือวัดพื้นฐาน การบำรุงรักษาตลอดจนการซ่อมแซม (15 June)`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox6([...checkbox6, e.target.value]);
+                          } else {
+                            setCheckBox6(
+                              checkbox6.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox6.includes(
+                          `การจัดการเครื่องมือวัดพื้นฐาน การบำรุงรักษาตลอดจนการซ่อมแซม (15 June)`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-blue-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงเช้า 15 มิถุนายน
+                        </span>
+                        การจัดการเครื่องมือวัดพื้นฐาน
+                        การบำรุงรักษาตลอดจนการซ่อมแซม
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping7"
+                        name="topping7"
+                        value={`การทดสอบความแข็ง ระดับพื้นฐานและการสอบเทียบ (15 June)`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox7([...checkbox7, e.target.value]);
+                          } else {
+                            setCheckBox7(
+                              checkbox7.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox7.includes(
+                          `การทดสอบความแข็ง ระดับพื้นฐานและการสอบเทียบ (15 June)`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-orange-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงบ่าย 15 มิถุนายน
+                        </span>
+                        การทดสอบความแข็ง ระดับพื้นฐานและการสอบเทียบ
+                      </span>
+                    </div>
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping8"
+                        name="topping8"
+                        value={`การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ (15 June)`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox8([...checkbox8, e.target.value]);
+                          } else {
+                            setCheckBox8(
+                              checkbox8.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox8.includes(
+                          `การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ (15 June)`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-orange-400 p-0.5 text-white rounded-sm mr-1">
+                          ช่วงบ่าย 15 มิถุนายน
+                        </span>
+                        การสอบเทียบเครื่องมือวัดที่มีความแม่นยําและมีประสิทธิภาพ
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ""
+              )}
               {button ? (
                 <button
                   disabled
