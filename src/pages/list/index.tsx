@@ -24,6 +24,12 @@ export default function TableDefault({ page }: Props) {
   // Data/page
   const [perPage, setPerPage] = useState(10);
 
+  const handleKeyDown = (event: any) => {
+    if (event.keyCode) {
+      event.preventDefault();
+    }
+  };
+
   //Send CheckIn register after print QR
   const checkInPrintQR = async () => {
     "use server";
@@ -86,10 +92,12 @@ export default function TableDefault({ page }: Props) {
             <div className="relative my-4 shadow-lg">
               <input
                 type="text"
+                autoFocus={true}
                 placeholder="Search..."
                 className="border border-gray-300 rounded-lg py-2 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <span>
