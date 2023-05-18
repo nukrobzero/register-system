@@ -65,11 +65,11 @@ export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
             ref={componentRef}
             className="flex flex-col items-center justify-center h-screen"
           >
-            <h1 className="text-xl font-bold">
+            <h1 className="text-base font-bold">
               {qrData.FIRSTNAME} {qrData.LASTNAME}
             </h1>
-            <h1>{qrData.JOBTITLE}</h1>
-            <h1>{qrData.COMPANY}</h1>
+            <h1 className="text-sm">{qrData.JOBTITLE}</h1>
+            <h1 className="text-sm">{qrData.COMPANY}</h1>
             <Image
               src={`${value}`}
               width={300}
