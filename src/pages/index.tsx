@@ -31,11 +31,26 @@ export default function Home() {
   const [checkbox6, setCheckBox6] = useState<string[]>([]);
   const [checkbox7, setCheckBox7] = useState<string[]>([]);
   const [checkbox8, setCheckBox8] = useState<string[]>([]);
-
+  const [checkValueCheckBox, setCheckValueCheckBox] = useState(0);
   const hendelSubmit = async (e: React.FormEvent) => {
     setButon(true);
     e.preventDefault();
     if (firstName === "") return null;
+    if (
+      checkbox1.length === 0 &&
+      checkbox2.length === 0 &&
+      checkbox3.length === 0 &&
+      checkbox4.length === 0 &&
+      checkbox5.length === 0 &&
+      checkbox6.length === 0 &&
+      checkbox7.length === 0 &&
+      checkbox8.length === 0
+    ) {
+      setCheckValueCheckBox(1);
+      setButon(false);
+      return;
+    }
+
     const formData = {
       company,
       email,
@@ -44,16 +59,15 @@ export default function Home() {
       jobTitle,
       phone,
       selectDate,
-      checkbox1: checkbox1[0],
-      checkbox2: checkbox2[0],
-      checkbox3: checkbox3[0],
-      checkbox4: checkbox4[0],
-      checkbox5: checkbox5[0],
-      checkbox6: checkbox6[0],
-      checkbox7: checkbox7[0],
-      checkbox8: checkbox8[0],
+      checkbox1: checkbox1[0] || "",
+      checkbox2: checkbox2[0] || "",
+      checkbox3: checkbox3[0] || "",
+      checkbox4: checkbox4[0] || "",
+      checkbox5: checkbox5[0] || "",
+      checkbox6: checkbox6[0] || "",
+      checkbox7: checkbox7[0] || "",
+      checkbox8: checkbox8[0] || "",
     };
-    console.log(formData);
     try {
       const res = await axios.post(`/api/formRegister`, formData);
       if (res.status === 202) {
@@ -73,6 +87,7 @@ export default function Home() {
       setCheckBox6([]);
       setCheckBox7([]);
       setCheckBox8([]);
+      setCheckValueCheckBox(0);
     } catch (error) {
       console.log(error);
     }
@@ -274,6 +289,7 @@ export default function Home() {
                     setCheckBox6([]);
                     setCheckBox7([]);
                     setCheckBox8([]);
+                    setCheckValueCheckBox(0);
                   }}
                   required
                   className="w-full border border-gray-300 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
@@ -291,7 +307,7 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงามสัมมนาเรื่องใด
+                    สนใจเข้าร่วมงามสัมมนาเรื่องใด (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
                   <div className="grid grid-cols-1 gap-2 text-sm">
@@ -410,6 +426,15 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
+                  {checkValueCheckBox === 1 ? (
+                    <div className="mt-2 text-sm">
+                      <span className="text-red-500">
+                        โปรดเลือก 1 ข้อขึ้นไป
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               ) : (
                 ""
@@ -420,7 +445,7 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงามสัมมนาเรื่องใด
+                    สนใจเข้าร่วมงามสัมมนาเรื่องใด (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
                   <div className="grid grid-cols-1 gap-2 text-sm">
@@ -538,6 +563,15 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
+                  {checkValueCheckBox === 1 ? (
+                    <div className="mt-2 text-sm">
+                      <span className="text-red-500">
+                        โปรดเลือก 1 ข้อขึ้นไป
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               ) : (
                 ""
@@ -548,7 +582,7 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงามสัมมนาเรื่องใด
+                    สนใจเข้าร่วมงามสัมมนาเรื่องใด (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
                   <div className="grid grid-cols-1 gap-2 text-sm">
@@ -782,6 +816,15 @@ export default function Home() {
                       </span>
                     </div>
                   </div>
+                  {checkValueCheckBox === 1 ? (
+                    <div className="mt-2 text-sm">
+                      <span className="text-red-500">
+                        โปรดเลือก 1 ข้อขึ้นไป
+                      </span>
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               ) : (
                 ""
