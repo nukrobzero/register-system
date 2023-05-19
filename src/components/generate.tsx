@@ -64,13 +64,13 @@ export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
             ref={componentRef}
             className="flex flex-col items-center justify-center h-screen"
           >
-            <h1 className="text-sm font-bold" style={{ fontSize: "16px" }}>
+            <h1 className="text-lg font-bold" style={{ fontSize: "18px" }}>
               {qrData.FIRSTNAME} {qrData.LASTNAME}
             </h1>
-            <h1 className="text-xs" style={{ fontSize: "14px" }}>
+            <h1 className="text-base" style={{ fontSize: "16px" }}>
               {qrData.JOBTITLE}
             </h1>
-            <h1 className="text-xs" style={{ fontSize: "14px" }}>
+            <h1 className="text-base" style={{ fontSize: "16px" }}>
               {qrData.COMPANY}
             </h1>
             <Image
@@ -78,7 +78,7 @@ export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
               width={300}
               height={300}
               alt={qrData.EMAIL}
-              className="!w-[250px] !h-[250px]"
+              className="!w-[300px] !h-[240px]"
             />
           </div>
         </div>
