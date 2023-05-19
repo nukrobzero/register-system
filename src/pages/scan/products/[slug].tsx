@@ -15,7 +15,11 @@ export default function ScanSlug() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
       </Head>
-      <Scanner titlePage={slug as string} apiURL={""} />
+      <Scanner
+        titlePage={slug as string}
+        backURL="/scan/products"
+        apiURL={`/api/products`}
+      />
     </Layout>
   );
 }

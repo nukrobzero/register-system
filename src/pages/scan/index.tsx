@@ -13,20 +13,14 @@ export default function Scan() {
       </Head>
       <div className="text-white py-12">
         <div className="space-y-4">
-          <h1 className="text-xl bg-blue-500 px-4 py-2 rounded-sm">Day1</h1>
+          <h1 className="text-xl bg-blue-500 px-4 py-2 rounded-sm">Menu</h1>
           <div>
-            <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link href={`/scan/room1`}>
-                <li className="bg-green-500 px-4 py-2 rounded-sm">room1</li>
+            <ul className="flex justify-center gap-4">
+              <Link href={`/scan/saminar`}>
+                <li className="bg-green-500 px-4 py-2 rounded-sm">Saminar</li>
               </Link>
-              <Link href={`/scan/room2`}>
-                <li className="bg-orange-400 px-4 py-2 rounded-sm">room2</li>
-              </Link>
-              <Link href={`/scan/room3`}>
-                <li className="bg-slate-500 px-4 py-2 rounded-sm">room3</li>
-              </Link>
-              <Link href={`/scan/room4`}>
-                <li className="bg-pink-500 px-4 py-2 rounded-sm">room4</li>
+              <Link href={`/scan/products`}>
+                <li className="bg-orange-400 px-4 py-2 rounded-sm">Products</li>
               </Link>
             </ul>
           </div>

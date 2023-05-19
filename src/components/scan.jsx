@@ -1,24 +1,20 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { QrReader } from "react-qr-reader";
 import { useRouter } from "next/router";
 import axios from "axios";
 
-interface ScannerProps {
-  titlePage: string;
-  apiURL: string;
-}
-
-export default function Scanner({ titlePage, apiURL }: ScannerProps) {
+export default function Scanner({ titlePage, apiURL, backURL }) {
   const router = useRouter();
   const [data, setData] = useState("No result");
   const [showModal, setShowModal] = useState(false);
-  const [scanEnabled, setScanEnabled] = useState(true);
+  const qrRef = useRef(null);
 
-  const handleScan = (result: any, error: any) => {
+  const handleScan = (result, error) => {
     if (!!result) {
       setData(result?.text);
       setShowModal(true);
-      setScanEnabled(false);
+
+      qrRef.current.stop();
     }
 
     if (!!error) {
@@ -27,19 +23,20 @@ export default function Scanner({ titlePage, apiURL }: ScannerProps) {
   };
 
   const handleBack = () => {
-    setScanEnabled(false);
-    router.push("/scan");
+    router.push(backURL);
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setScanEnabled(true);
     router.reload();
   };
 
   const handleOK = async () => {
-    await axios.post(apiURL, { data });
-    setScanEnabled(true);
+    const formData = {
+      room: titlePage,
+      email: data,
+    };
+    await axios.post(apiURL, formData);
     router.reload();
   };
 
@@ -51,15 +48,13 @@ export default function Scanner({ titlePage, apiURL }: ScannerProps) {
             QR Scanner for {titlePage}
           </h1>
           <div>
-            {scanEnabled && (
-              <QrReader
-                className="lg:h-[400px] lg:w-[400px] h-[300px] w-[300px]"
-                onResult={handleScan}
-                constraints={{ facingMode: "environment" }}
-                //@ts-ignore
-                style={{ width: "40%", height: "40%" }}
-              />
-            )}
+            <QrReader
+              className="lg:h-[400px] lg:w-[400px] h-[300px] w-[300px]"
+              onResult={handleScan}
+              constraints={{ facingMode: "environment" }}
+              style={{ width: "40%", height: "40%" }}
+              ref={qrRef}
+            />
           </div>
           <button
             onClick={handleBack}
