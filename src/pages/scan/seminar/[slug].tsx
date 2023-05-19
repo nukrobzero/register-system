@@ -17,8 +17,8 @@ export default function ScanSlug() {
       </Head>
       <Scanner
         titlePage={slug as string}
-        backURL="/scan/saminar"
-        apiURL={`/api/saminarRoom`}
+        backURL="/scan/seminar"
+        apiURL={`/api/seminarRoom`}
       />
     </Layout>
   );

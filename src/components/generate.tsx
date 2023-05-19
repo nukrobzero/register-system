@@ -1,6 +1,5 @@
 import { useReactToPrint } from "react-to-print";
 import React, { useEffect, useRef, useState } from "react";
-import QRCode from "qrcode";
 import Image from "next/image";
 import { AiFillCloseCircle } from "react-icons/ai";
 
@@ -40,7 +39,7 @@ export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
     <div>
       <div className="fixed top-0 left-0 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-50 z-[99]">
         <div className="flex flex-col justify-center items-center bg-white w-auto h-[34rem] p-16 rounded-lg space-y-8 transition-all ease-in-out">
-          <div className="-mt-2 -mr-[24rem]">
+          <div className="-mt-12 -mr-[20rem]">
             <button
               onClick={btnOnClick}
               className="text-red-600 hover:text-red-700 cursor-pointer"
@@ -65,17 +64,21 @@ export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
             ref={componentRef}
             className="flex flex-col items-center justify-center h-screen"
           >
-            <h1 className="text-base font-bold">
+            <h1 className="text-sm font-bold" style={{ fontSize: "16px" }}>
               {qrData.FIRSTNAME} {qrData.LASTNAME}
             </h1>
-            <h1 className="text-sm">{qrData.JOBTITLE}</h1>
-            <h1 className="text-sm">{qrData.COMPANY}</h1>
+            <h1 className="text-xs" style={{ fontSize: "14px" }}>
+              {qrData.JOBTITLE}
+            </h1>
+            <h1 className="text-xs" style={{ fontSize: "14px" }}>
+              {qrData.COMPANY}
+            </h1>
             <Image
               src={`${value}`}
               width={300}
               height={300}
               alt={qrData.EMAIL}
-              className="!w-[300px] !h-[300px]"
+              className="!w-[250px] !h-[250px]"
             />
           </div>
         </div>

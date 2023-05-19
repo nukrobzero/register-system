@@ -16,8 +16,8 @@ export default function Scan() {
           <h1 className="text-xl bg-blue-500 px-4 py-2 rounded-sm">Menu</h1>
           <div>
             <ul className="flex justify-center gap-4">
-              <Link href={`/scan/saminar`}>
-                <li className="bg-green-500 px-4 py-2 rounded-sm">Saminar</li>
+              <Link href={`/scan/seminar`}>
+                <li className="bg-green-500 px-4 py-2 rounded-sm">Seminar</li>
               </Link>
               <Link href={`/scan/products`}>
                 <li className="bg-orange-400 px-4 py-2 rounded-sm">Products</li>
