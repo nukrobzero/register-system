@@ -5,7 +5,7 @@ import { BsQrCode } from "react-icons/bs";
 import Pagination from "@/components/Pagination";
 import Layout from "@/components/Layout/layout";
 import Head from "next/head";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Generate from "../../components/generate";
 
 type Props = {
@@ -70,15 +70,15 @@ export default function TableDefault({ page }: Props) {
   return (
     <Layout>
       <Head>
-        <title>List Register - Sumipol x Mitutoyo Day 2023</title>
-        <meta name="description" content="List Register" />
+        <title>Find User - Sumipol x Mitutoyo Day 2023</title>
+        <meta name="description" content="Find User" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
       </Head>
       <div>
         <div className="flex flex-col justify-center py-12">
           <h1 className="uppercase font-bold bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] text-white py-1 px-4 rounded-md shadow-lg border border-gray-300 focus:outline-none focus:ring-2">
-            List Register
+            Find User
           </h1>
           <div className="flex flex-col md:flex-row justify-between">
             <div className="relative my-4 shadow-lg">
@@ -184,12 +184,13 @@ export default function TableDefault({ page }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const getList = await axios.get(
     `https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=getData`
   );
   const list = getList.data;
   return {
     props: { page: list },
+    revalidate: 1,
   };
 };

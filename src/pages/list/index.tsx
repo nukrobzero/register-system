@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 import { useState } from "react";
 import { FcSearch } from "react-icons/fc";
@@ -5,8 +7,9 @@ import { BsQrCode } from "react-icons/bs";
 import Pagination from "@/components/Pagination";
 import Layout from "@/components/Layout/layout";
 import Head from "next/head";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import Generate from "../../components/generate";
+import Link from "next/link";
 
 type Props = {
   page: any;
@@ -103,6 +106,14 @@ export default function TableDefault({ page }: Props) {
                 </span>
               </div>
             </div>
+            <div className="flex items-center font-bold">
+              <Link
+                href={`/finduser`}
+                className="bg-gradient-to-r from-blue-400 to-emerald-400 hover:bg-gradient-to-r hover:from-blue-500 hover:to-emerald-500 text-white p-4 rounded-md"
+              >
+                Find User
+              </Link>
+            </div>
           </div>
           <div className="relative overflow-x-auto shadow-md rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-black">
@@ -191,12 +202,13 @@ export default function TableDefault({ page }: Props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const getList = await axios.get(
     `https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=getData`
   );
   const list = getList.data;
   return {
     props: { page: list },
+    revalidate: 1,
   };
 };
