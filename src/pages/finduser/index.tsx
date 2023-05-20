@@ -5,7 +5,7 @@ import { BsQrCode } from "react-icons/bs";
 import Pagination from "@/components/Pagination";
 import Layout from "@/components/Layout/layout";
 import Head from "next/head";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Generate from "../../components/generate";
 
 type Props = {
@@ -21,12 +21,6 @@ export default function TableDefault({ page }: Props) {
 
   // Data/page
   const [perPage, setPerPage] = useState(10);
-
-  const handleKeyDown = (event: any) => {
-    if (event.keyCode) {
-      event.preventDefault();
-    }
-  };
 
   //Send CheckIn register after print QR
   const checkInPrintQR = async () => {
@@ -95,7 +89,6 @@ export default function TableDefault({ page }: Props) {
                 className="border border-gray-300 rounded-lg py-2 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <span>
