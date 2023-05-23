@@ -353,16 +353,16 @@ export default function Home() {
                         value={`การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM (${selectDate})`}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            setCheckBox1([...checkbox0, e.target.value]);
+                            setCheckBox1([...checkbox1, e.target.value]);
                           } else {
                             setCheckBox1(
-                              checkbox0.filter(
+                              checkbox1.filter(
                                 (item) => item !== e.target.value
                               )
                             );
                           }
                         }}
-                        checked={checkbox0.includes(
+                        checked={checkbox1.includes(
                           `การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM (${selectDate})`
                         )}
                       />
