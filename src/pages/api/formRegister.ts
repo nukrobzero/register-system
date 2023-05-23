@@ -15,6 +15,7 @@ export default async function handler(
       jobTitle,
       phone,
       selectDate,
+      checkbox0,
       checkbox1,
       checkbox2,
       checkbox3,
@@ -61,6 +62,7 @@ export default async function handler(
     formData.append("TIMESTAMP", timestamp);
     formData.append("PHONE", phone);
     formData.append("DateJoin", selectDate);
+    formData.append("Exhibition", checkbox0);
     formData.append("Choice1", checkbox1);
     formData.append("Choice2", checkbox2);
     formData.append("Choice3", checkbox3);

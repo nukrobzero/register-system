@@ -23,6 +23,7 @@ export default function Home() {
   const [alert, setAlert] = useState("");
   const [button, setButon] = useState(false);
   const [selectDate, setSelectDate] = useState<string>("");
+  const [checkbox0, setCheckBox0] = useState<string[]>([]);
   const [checkbox1, setCheckBox1] = useState<string[]>([]);
   const [checkbox2, setCheckBox2] = useState<string[]>([]);
   const [checkbox3, setCheckBox3] = useState<string[]>([]);
@@ -37,6 +38,7 @@ export default function Home() {
     e.preventDefault();
     if (firstName === "") return null;
     if (
+      checkbox0.length === 0 &&
       checkbox1.length === 0 &&
       checkbox2.length === 0 &&
       checkbox3.length === 0 &&
@@ -59,6 +61,7 @@ export default function Home() {
       jobTitle,
       phone,
       selectDate,
+      checkbox0: checkbox0[0] || "",
       checkbox1: checkbox1[0] || "",
       checkbox2: checkbox2[0] || "",
       checkbox3: checkbox3[0] || "",
@@ -79,6 +82,7 @@ export default function Home() {
       setButon(false);
       setAlert("");
       setSelectDate("");
+      setCheckBox0([]);
       setCheckBox1([]);
       setCheckBox2([]);
       setCheckBox3([]);
@@ -281,6 +285,7 @@ export default function Home() {
                 <select
                   onChange={(e) => {
                     setSelectDate(e.target.value);
+                    setCheckBox0([]);
                     setCheckBox1([]);
                     setCheckBox2([]);
                     setCheckBox3([]);
@@ -307,10 +312,39 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงามสัมมนาเรื่องใด (สามารถเลือกได้มากกว่า 1 ข้อ)
+                    สนใจเข้าร่วมงาม สัมมนา/นิทรรศการ ใดบ้าง
+                    (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
                   <div className="grid grid-cols-1 gap-2 text-sm">
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping0"
+                        name="topping0"
+                        value={`งาน "นิทรรศการ" (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox0([...checkbox0, e.target.value]);
+                          } else {
+                            setCheckBox0(
+                              checkbox0.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox0.includes(
+                          `งาน "นิทรรศการ" (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-violet-500 p-0.5 text-white rounded-sm mr-1">
+                          Exhibition
+                        </span>
+                        งาน &quot;นิทรรศการ&quot;
+                      </span>
+                    </div>
                     <div className="space-x-1 flex items-center">
                       <input
                         type="checkbox"
@@ -319,16 +353,16 @@ export default function Home() {
                         value={`การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM (${selectDate})`}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            setCheckBox1([...checkbox1, e.target.value]);
+                            setCheckBox1([...checkbox0, e.target.value]);
                           } else {
                             setCheckBox1(
-                              checkbox1.filter(
+                              checkbox0.filter(
                                 (item) => item !== e.target.value
                               )
                             );
                           }
                         }}
-                        checked={checkbox1.includes(
+                        checked={checkbox0.includes(
                           `การเพิ่มประสิทธิภาพการทำงานของเครื่อง CMM (${selectDate})`
                         )}
                       />
@@ -445,10 +479,39 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงามสัมมนาเรื่องใด (สามารถเลือกได้มากกว่า 1 ข้อ)
+                    สนใจเข้าร่วมงาม สัมมนา/นิทรรศการ ใดบ้าง
+                    (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
                   <div className="grid grid-cols-1 gap-2 text-sm">
+                    <div className="space-x-1 flex items-center">
+                      <input
+                        type="checkbox"
+                        id="topping0"
+                        name="topping0"
+                        value={`งาน "นิทรรศการ" (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox0([...checkbox0, e.target.value]);
+                          } else {
+                            setCheckBox0(
+                              checkbox0.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox0.includes(
+                          `งาน "นิทรรศการ" (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-violet-500 p-0.5 text-white rounded-sm mr-1">
+                          Exhibition
+                        </span>
+                        งาน &quot;นิทรรศการ&quot;
+                      </span>
+                    </div>
                     <div className="space-x-1 flex items-center">
                       <input
                         type="checkbox"
@@ -582,10 +645,40 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงามสัมมนาเรื่องใด (สามารถเลือกได้มากกว่า 1 ข้อ)
+                    สนใจเข้าร่วมงาม สัมมนา/นิทรรศการ ใดบ้าง
+                    (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
                   <div className="grid grid-cols-1 gap-2 text-sm">
+                    <h1 className="ml-4">14-15 มิถุนายน</h1>
+                    <div className="space-x-1 flex items-center mb-2">
+                      <input
+                        type="checkbox"
+                        id="topping0"
+                        name="topping0"
+                        value={`งาน "นิทรรศการ" (${selectDate})`}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setCheckBox0([...checkbox0, e.target.value]);
+                          } else {
+                            setCheckBox0(
+                              checkbox0.filter(
+                                (item) => item !== e.target.value
+                              )
+                            );
+                          }
+                        }}
+                        checked={checkbox0.includes(
+                          `งาน "นิทรรศการ" (${selectDate})`
+                        )}
+                      />
+                      <span>
+                        <span className="bg-violet-500 p-0.5 text-white rounded-sm mr-1">
+                          Exhibition
+                        </span>
+                        งาน &quot;นิทรรศการ&quot;
+                      </span>
+                    </div>
                     <h1 className="ml-4">14 มิถุนายน</h1>
                     <div className="space-x-1 flex items-center">
                       <input
