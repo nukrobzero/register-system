@@ -312,7 +312,7 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงาม สัมมนา/นิทรรศการ ใดบ้าง
+                    สนใจเข้าร่วมงาน สัมมนา/นิทรรศการ ใดบ้าง
                     (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
@@ -479,7 +479,7 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงาม สัมมนา/นิทรรศการ ใดบ้าง
+                    สนใจเข้าร่วมงาน สัมมนา/นิทรรศการ ใดบ้าง
                     (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
@@ -645,7 +645,7 @@ export default function Home() {
                     htmlFor="seminar"
                     className="block mb-2 text-sm font-medium text-black"
                   >
-                    สนใจเข้าร่วมงาม สัมมนา/นิทรรศการ ใดบ้าง
+                    สนใจเข้าร่วมงาน สัมมนา/นิทรรศการ ใดบ้าง
                     (สามารถเลือกได้มากกว่า 1 ข้อ)
                     <span className="text-red-600">*</span>
                   </label>
