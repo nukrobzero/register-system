@@ -5,8 +5,26 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  //check auth token
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  if (token !== process.env.SECRET_KEY) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+
   if (req.method === "POST") {
     const { room, email } = req.body;
+
+    //check input
+    if (!room || !email) {
+      return res.status(401).json({ message: "Missing required data" });
+    }
 
     const now = new Date();
     const options = {
@@ -36,5 +54,12 @@ export default async function handler(
     } catch (error) {
       res.status(500).json(error);
     }
+  }
+  // HTTP method not supported!
+  else {
+    res.setHeader("Allow", ["GET", "DELETE", "PUT", "PATCH"]);
+    res
+      .status(405)
+      .json({ message: `HTTP method ${req.method} is not supported.` });
   }
 }

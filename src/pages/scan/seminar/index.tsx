@@ -13,7 +13,7 @@ export default function Scan() {
       </Head>
       <div className="text-white py-12">
         <div className="space-y-4">
-          <h1 className="text-xl bg-blue-500 px-4 py-2 rounded-sm">Day1</h1>
+          <h1 className="text-xl bg-blue-500 px-4 py-2 rounded-sm">Menu</h1>
           <div>
             <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link href={`/scan/seminar/room1`}>

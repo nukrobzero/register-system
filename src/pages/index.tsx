@@ -72,7 +72,11 @@ export default function Home() {
       checkbox8: checkbox8[0] || "",
     };
     try {
-      const res = await axios.post(`/api/formRegister`, formData);
+      const res = await axios.post(`/api/formRegister`, formData, {
+        headers: {
+          Authorization: `Bearer ${process.env.SECRET_KEY}`,
+        },
+      });
       if (res.status === 202) {
         setAlert(email);
         setButon(false);

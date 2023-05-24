@@ -6,6 +6,19 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  //check auth token
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  if (token !== process.env.SECRET_KEY) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+
   if (req.method === "POST") {
     const {
       company,
@@ -27,15 +40,15 @@ export default async function handler(
     } = req.body;
     //check input
     if (
-      company === undefined &&
-      email === undefined &&
-      firstName === undefined &&
-      lastName === undefined &&
-      jobTitle === undefined &&
-      phone === undefined
+      !company ||
+      !email ||
+      !firstName ||
+      !lastName ||
+      !jobTitle ||
+      !phone ||
+      !selectDate
     ) {
-      res.status(401).json({ message: "no have paremeter" });
-      return;
+      return res.status(402).json({ message: "Missing required data" });
     }
 
     const id = uuidv4();

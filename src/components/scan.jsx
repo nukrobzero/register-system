@@ -36,7 +36,9 @@ export default function Scanner({ titlePage, apiURL, backURL }) {
       room: titlePage,
       email: data,
     };
-    await axios.post(apiURL, formData);
+    await axios.post(apiURL, formData, {
+      headers: { Authorization: `Bearer ${process.env.SECRET_KEY}` },
+    });
     router.reload();
   };
 

@@ -8,6 +8,9 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
+  env: {
+    SECRET_KEY: process.env.SECRET_KEY,
+  },
 };
 
 module.exports = nextConfig;
