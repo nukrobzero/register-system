@@ -14,21 +14,43 @@ export default function Scan() {
       <div className="text-white py-12">
         <div className="space-y-4">
           <h1 className="text-xl bg-blue-500 px-4 py-2 rounded-sm">Menu</h1>
-          <div>
-            <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link href={`/scan/products/pd1`}>
-                <li className="bg-green-500 px-4 py-2 rounded-sm">pd1</li>
-              </Link>
-              <Link href={`/scan/products/pd2`}>
-                <li className="bg-orange-400 px-4 py-2 rounded-sm">pd2</li>
-              </Link>
-              <Link href={`/scan/products/pd3`}>
-                <li className="bg-slate-500 px-4 py-2 rounded-sm">pd3</li>
-              </Link>
-              <Link href={`/scan/products/pd4`}>
-                <li className="bg-pink-500 px-4 py-2 rounded-sm">pd4</li>
-              </Link>
-            </ul>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <Link
+              href={`/scan/products/rockwell-hardness-testing`}
+              className="bg-green-500 px-4 py-2 rounded-sm"
+            >
+              Rockwell Hardness Testing
+            </Link>
+            <Link
+              href={`/scan/products/roundtracer`}
+              className="bg-orange-400 px-4 py-2 rounded-sm"
+            >
+              Roundtracer
+            </Link>
+            <Link
+              href={`/scan/products/contour-Measuring-Machine`}
+              className="bg-slate-500 px-4 py-2 rounded-sm"
+            >
+              Contour Measuring Machine
+            </Link>
+            <Link
+              href={`/scan/products/vision-measuring-system`}
+              className="bg-pink-500 px-4 py-2 rounded-sm"
+            >
+              Vision Measuring System
+            </Link>
+            <Link
+              href={`/scan/products/small-tools`}
+              className="bg-blue-800 px-4 py-2 rounded-sm"
+            >
+              Small Tools
+            </Link>
+            <Link
+              href={`/scan/products/surface-roughness-measurement`}
+              className="bg-red-400 px-4 py-2 rounded-sm"
+            >
+              Surface Roughness Measurement
+            </Link>
           </div>
         </div>
         <div className="flex justify-center my-20">

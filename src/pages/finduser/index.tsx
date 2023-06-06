@@ -63,6 +63,7 @@ export default function TableDefault({ page }: Props) {
           data.EMAIL.toLowerCase().includes(searchQuery.toLowerCase()) ||
           data.FIRSTNAME.toLowerCase().includes(searchQuery.toLowerCase()) ||
           data.LASTNAME.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          data.COMPANY.toLowerCase().includes(searchQuery.toLowerCase()) ||
           data.PHONE.toLowerCase().includes(searchQuery.toLowerCase())
       )
       .slice(currentPage * perPage, (currentPage + 1) * perPage);
@@ -112,6 +113,9 @@ export default function TableDefault({ page }: Props) {
                     Last Name
                   </th>
                   <th scope="col" className="px-6 py-3">
+                    Company
+                  </th>
+                  <th scope="col" className="px-6 py-3">
                     Phone
                   </th>
                   <th scope="col" className="px-6 py-3">
@@ -141,6 +145,7 @@ export default function TableDefault({ page }: Props) {
                       </td>
                       <td className="px-6 py-4">{data.FIRSTNAME}</td>
                       <td className="px-6 py-4">{data.LASTNAME}</td>
+                      <td className="px-6 py-4">{data.COMPANY}</td>
                       <td className="px-6 py-4">{data.PHONE}</td>
                       <td className="px-6 py-4">
                         <button
@@ -189,6 +194,7 @@ export const getStaticProps: GetStaticProps = async () => {
     `https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=getData`
   );
   const list = getList.data;
+
   return {
     props: { page: list },
     revalidate: 1,
