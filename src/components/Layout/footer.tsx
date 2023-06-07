@@ -5,7 +5,7 @@ export default function Footer() {
     return formattedDate;
   };
   return (
-    <footer className="flex flex-row justify-center items-center">
+    <footer className="flex flex-row justify-center items-center bottom-0">
       <div className="text-slate-300 p-4">
         <span className="font-semibold text-xs">
           COPYRIGHT ©{yearFormat()} SUMIPOL CORPORATION LIMITED

@@ -35,9 +35,9 @@ export default function Generate({ btnOnClick, btnCheckIn, qrData }: Props) {
 
   return (
     <div>
-      <div className="fixed top-0 left-0 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-50 z-[99]">
+      <div className="fixed top-0 left-0 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-20 z-[99] p-6">
         <div className="flex flex-col justify-center items-center bg-white w-auto h-[34rem] p-16 rounded-lg space-y-8 transition-all ease-in-out">
-          <div className="-mt-12 -mr-[23rem]">
+          <div className="-mt-9 md:-mt-12 -mr-[19rem] md:-mr-[23rem]">
             <button
               onClick={btnOnClick}
               className="text-red-600 hover:text-red-700 cursor-pointer"

@@ -10,8 +10,8 @@ export default function Pagination({ page, perPage, setCurrentPage }: Props) {
   return (
     <ReactPaginate
       pageCount={Math.ceil(page?.length / perPage)}
-      pageRangeDisplayed={5}
-      marginPagesDisplayed={2}
+      pageRangeDisplayed={2}
+      marginPagesDisplayed={0}
       onPageChange={({ selected }) => setCurrentPage(selected)}
       containerClassName="flex justify-center py-2 px-4 rounded-lg bg-white shadow-md"
       pageClassName="mx-2"

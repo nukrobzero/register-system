@@ -44,17 +44,17 @@ export default function Scanner({ titlePage, apiURL, backURL }) {
 
   return (
     <>
-      <main className="flex flex-col mt-[5rem] justify-center items-center">
+      <main className="flex flex-col mt-[5rem] justify-center items-center p-4">
         <div className="flex flex-col justify-center items-center">
-          <h1 className="text-4xl font-bold mb-4">
+          <h1 className="text-3xl font-bold mb-4 text-neutral-200 text-center">
             QR Scanner for {titlePage}
           </h1>
           <div>
             <QrReader
-              className="lg:h-[400px] lg:w-[400px] h-[300px] w-[300px]"
+              className="lg:h-[400px] lg:w-[400px] h-[340px] w-[340px]"
               onResult={handleScan}
               constraints={{ facingMode: "environment" }}
-              style={{ width: "40%", height: "40%" }}
+              style={{ width: "40%", height: "60%" }}
               ref={qrRef}
             />
           </div>

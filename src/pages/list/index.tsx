@@ -84,9 +84,9 @@ export default function TableDefault({ page }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
       </Head>
-      <div>
-        <div className="flex flex-col justify-center py-12">
-          <h1 className="uppercase font-bold bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] text-white py-1 px-4 rounded-md shadow-lg border border-gray-300 focus:outline-none focus:ring-2">
+      <div className="max-w-screen-2xl mx-auto px-4 py-6 w-full">
+        <div className="flex flex-col justify-center md:max-w-2xl lg:max-w-6xl mx-auto">
+          <h1 className="uppercase font-bold bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] text-white py-1 px-4 rounded-md shadow-lg ">
             List Register
           </h1>
           <div className="flex flex-col md:flex-row justify-between">
@@ -106,7 +106,7 @@ export default function TableDefault({ page }: Props) {
                 </span>
               </div>
             </div>
-            <div className="flex items-center font-bold">
+            <div className="flex items-center font-bold mb-4 md:mb-0">
               <Link
                 href={`/finduser`}
                 className="bg-gradient-to-r from-blue-400 to-emerald-400 hover:bg-gradient-to-r hover:from-blue-500 hover:to-emerald-500 text-white p-4 rounded-md"
