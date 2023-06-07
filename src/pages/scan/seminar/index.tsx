@@ -16,17 +16,11 @@ export default function Scan() {
           <h1 className="text-xl bg-blue-500 px-4 py-2 rounded-sm">Menu</h1>
           <div>
             <ul className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link href={`/scan/seminar/room1`}>
-                <li className="bg-green-500 px-4 py-2 rounded-sm">room1</li>
+              <Link href={`/scan/seminar/seminar1`}>
+                <li className="bg-orange-400 px-4 py-2 rounded-sm">Seminar1</li>
               </Link>
-              <Link href={`/scan/seminar/room2`}>
-                <li className="bg-orange-400 px-4 py-2 rounded-sm">room2</li>
-              </Link>
-              <Link href={`/scan/seminar/room3`}>
-                <li className="bg-slate-500 px-4 py-2 rounded-sm">room3</li>
-              </Link>
-              <Link href={`/scan/seminar/room4`}>
-                <li className="bg-pink-500 px-4 py-2 rounded-sm">room4</li>
+              <Link href={`/scan/seminar/seminar2`}>
+                <li className="bg-blue-800 px-4 py-2 rounded-sm">Seminar2</li>
               </Link>
             </ul>
           </div>
