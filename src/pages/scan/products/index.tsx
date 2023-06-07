@@ -51,6 +51,18 @@ export default function Scan() {
             >
               Surface Roughness Measurement
             </Link>
+            <Link
+              href={`/scan/products/simtec`}
+              className="bg-orange-700 px-4 py-2 rounded-sm"
+            >
+              Simtec
+            </Link>
+            <Link
+              href={`/scan/products/engineer`}
+              className="bg-red-800 px-4 py-2 rounded-sm"
+            >
+              Engineer
+            </Link>
           </div>
         </div>
         <div className="flex justify-center my-20">
