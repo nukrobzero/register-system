@@ -84,8 +84,7 @@ export default function TableDefault({ page }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
       </Head>
-      <div className="max-w-screen-2xl mx-auto px-4 py-6 w-full">
-        <div className="flex flex-col justify-center md:max-w-2xl lg:max-w-6xl mx-auto">
+        <div className="flex flex-col justify-center max-w-4xl mx-auto px-4 py-6 pb-10 w-full">
           <h1 className="uppercase font-bold bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] text-white py-1 px-4 rounded-md shadow-lg ">
             List Register
           </h1>
@@ -188,7 +187,6 @@ export default function TableDefault({ page }: Props) {
               </tbody>
             </table>
           </div>
-          {/* Paginate table */}
           <div className="flex justify-center md:justify-end py-4">
             <Pagination
               page={page}
@@ -197,7 +195,6 @@ export default function TableDefault({ page }: Props) {
             />
           </div>
         </div>
-      </div>
     </Layout>
   );
 }

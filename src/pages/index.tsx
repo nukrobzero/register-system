@@ -109,8 +109,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
       </Head>
-      <div>
-        <div className="flex flex-col justify-center h-auto py-12 w-80 md:w-[45rem] lg:w-[50rem]">
+        <div className="flex flex-col justify-center h-auto pt-12 pb-20 w-80 md:w-[45rem] lg:w-[50rem]">
           <div className="flex justify-center">
             <Image
               src={`https://www.sumipol.com/wp-content/uploads/2023/05/banner-SxM-2-1.png.webp`}
@@ -982,7 +981,6 @@ export default function Home() {
             </div>
           )}
         </div>
-      </div>
     </Layout>
   );
 }
