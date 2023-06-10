@@ -58,6 +58,18 @@ export default function Scan() {
               Leasing
             </Link>
             <Link
+              href={`/scan/products/cnc-cmm`}
+              className="bg-amber-400 px-4 py-2 rounded-sm"
+            >
+              CNC CMM
+            </Link>
+            <Link
+              href={`/scan/products/sj410`}
+              className="bg-emerald-600 px-4 py-2 rounded-sm"
+            >
+              SJ410
+            </Link>
+            <Link
               href={`/scan/products/simtec`}
               className="bg-orange-700 px-4 py-2 rounded-sm"
             >
