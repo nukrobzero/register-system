@@ -199,7 +199,7 @@ export default function Home() {
               >
                 Email<span className="text-red-600">*</span>
                 <span className="md:ml-2 block md:inline text-red-600 text-xs">
-                  สำหรับท่านใดที่จะใช้อีเมล์เดียวในการสมัครหลายคนทำได้ตามนี้
+                  สำหรับท่านใดที่จะใช้อีเมล์เดียวในการสมัครหลายคนทำได้ดังนี้
                   <span className="bg-blue-500 text-white px-1 md:p-1 ml-1 rounded-md">
                     name+firstname@example.com
                   </span>
