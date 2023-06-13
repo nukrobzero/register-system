@@ -19,7 +19,7 @@ export default async function handler(
   }
 
   if (req.method === "POST") {
-    const { room, email } = req.body;
+    const { room, email, detail } = req.body;
 
     //check input
     if (!room || !email) {
@@ -43,6 +43,7 @@ export default async function handler(
     formData.append("Products", room);
     formData.append("Email", email);
     formData.append("Timestamp", timestamp);
+    formData.append("Detail", detail);
 
     try {
       const response = await axios.post(

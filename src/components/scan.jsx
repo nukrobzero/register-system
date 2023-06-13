@@ -6,6 +6,7 @@ import axios from "axios";
 export default function Scanner({ titlePage, apiURL, backURL }) {
   const router = useRouter();
   const [data, setData] = useState("No result");
+  const [detail, setDetail] = useState("");
   const [showModal, setShowModal] = useState(false);
   const qrRef = useRef(null);
 
@@ -35,6 +36,7 @@ export default function Scanner({ titlePage, apiURL, backURL }) {
     const formData = {
       room: titlePage,
       email: data,
+      detail,
     };
     await axios.post(apiURL, formData, {
       headers: { Authorization: `Bearer ${process.env.SECRET_KEY}` },
@@ -68,7 +70,18 @@ export default function Scanner({ titlePage, apiURL, backURL }) {
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
               <div className="bg-white rounded-md p-4">
                 <p className="text-xl font-bold mb-2">Scanned data:</p>
-                <p>{data}</p>
+                <p className="font-semibold">
+                  Customer:<span className="font-normal">{data}</span>
+                </p>
+                <div className="mt-2">
+                  <label className="font-semibold">Detail:</label>
+                  <input
+                    type="text"
+                    id="detail"
+                    onChange={(e) => setDetail(e.target.value)}
+                    className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent bg-slate-100"
+                  />
+                </div>
                 <button
                   className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md mt-4 hover:bg-gray-300"
                   onClick={handleCloseModal}
