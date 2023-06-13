@@ -6,8 +6,8 @@ export default function Scan() {
   return (
     <Layout>
       <Head>
-        <title>Scan - Sumipol x Mitutoyo Day 2023</title>
-        <meta name="description" content="List Register" />
+        <title>Products - Sumipol x Mitutoyo Day 2023</title>
+        <meta name="description" content="Products" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
       </Head>
@@ -80,6 +80,12 @@ export default function Scan() {
               className="bg-red-800 px-4 py-2 rounded-sm"
             >
               Engineer
+            </Link>
+            <Link
+              href={`/scan/products/other`}
+              className="bg-sky-700 px-4 py-2 rounded-sm"
+            >
+              Other
             </Link>
           </div>
         </div>
