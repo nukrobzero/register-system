@@ -54,10 +54,7 @@ export default function TableDefault({ page }: Props) {
     checkInData.append("CHECKIND1", timestamp);
 
     try {
-      await axios.post(
-        "https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=addCheckIn",
-        checkInData
-      );
+      await axios.post(`${process.env.GOOGLE_SHEET_ADDCHECKIN}`, checkInData);
     } catch (error) {
       console.log(error);
     }
@@ -84,117 +81,116 @@ export default function TableDefault({ page }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
       </Head>
-        <div className="flex flex-col justify-center max-w-4xl mx-auto px-4 py-6 pb-10 w-full">
-          <h1 className="uppercase font-bold bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] text-white py-1 px-4 rounded-md shadow-lg ">
-            List Register
-          </h1>
-          <div className="flex flex-col md:flex-row justify-between">
-            <div className="relative my-4 shadow-lg">
-              <input
-                type="text"
-                autoFocus={true}
-                placeholder="Search..."
-                className="border border-gray-300 rounded-lg py-2 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <span>
-                  <FcSearch size={30} />
-                </span>
-              </div>
-            </div>
-            <div className="flex items-center font-bold mb-4 md:mb-0">
-              <Link
-                href={`/finduser`}
-                className="bg-gradient-to-r from-blue-400 to-emerald-400 hover:bg-gradient-to-r hover:from-blue-500 hover:to-emerald-500 text-white p-4 rounded-md"
-              >
-                Find User
-              </Link>
-            </div>
-          </div>
-          <div className="relative overflow-x-auto shadow-md rounded-lg">
-            <table className="w-full text-sm text-left text-gray-500 dark:text-black">
-              <thead className="text-xs text-white font-semibold uppercase bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA]">
-                <tr>
-                  <th scope="col" className="px-6 py-3">
-                    Email
-                  </th>
-
-                  <th scope="col" className="px-6 py-3">
-                    First Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Last Name
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    Phone
-                  </th>
-                  <th scope="col" className="px-6 py-3">
-                    <span className="sr-only">Generate QR</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredData && filteredData.length === 0 ? (
-                  <tr className="bg-white border-b hover:bg-gray-200">
-                    <td colSpan={6} className="text-center py-4">
-                      No data found
-                    </td>
-                  </tr>
-                ) : (
-                  filteredData &&
-                  filteredData.map((data: any) => (
-                    <tr
-                      key={data.ID}
-                      className="bg-white border-b hover:bg-gray-200"
-                    >
-                      <td
-                        scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
-                      >
-                        {data.EMAIL}
-                      </td>
-                      <td className="px-6 py-4">{data.FIRSTNAME}</td>
-                      <td className="px-6 py-4">{data.LASTNAME}</td>
-                      <td className="px-6 py-4">{data.PHONE}</td>
-                      <td className="px-6 py-4">
-                        <button
-                          onClick={() => {
-                            setIsOpenPopUp(!isOpenPopUp),
-                              setValueDataToQR(data);
-                          }}
-                          title="Generate QR"
-                          className="text-blue-500 hover:text-blue-800 flex flex-row justify-center items-center"
-                        >
-                          <BsQrCode size={25} />
-                        </button>
-                        {isOpenPopUp && (
-                          <div>
-                            <Generate
-                              btnOnClick={() => setIsOpenPopUp(false)}
-                              btnCheckIn={checkInPrintQR}
-                              //@ts-ignore
-                              qrData={valueDataToQR}
-                            />
-                          </div>
-                        )}
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="flex justify-center md:justify-end py-4">
-            <Pagination
-              page={page}
-              perPage={perPage}
-              setCurrentPage={setCurrentPage}
+      <div className="flex flex-col justify-center max-w-4xl mx-auto px-4 py-6 pb-10 w-full">
+        <h1 className="uppercase font-bold bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] text-white py-1 px-4 rounded-md shadow-lg ">
+          List Register
+        </h1>
+        <div className="flex flex-col md:flex-row justify-between">
+          <div className="relative my-4 shadow-lg">
+            <input
+              type="text"
+              autoFocus={true}
+              placeholder="Search..."
+              className="border border-gray-300 rounded-lg py-2 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-[#0083CA] focus:border-transparent"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
             />
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <span>
+                <FcSearch size={30} />
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center font-bold mb-4 md:mb-0">
+            <Link
+              href={`/finduser`}
+              className="bg-gradient-to-r from-blue-400 to-emerald-400 hover:bg-gradient-to-r hover:from-blue-500 hover:to-emerald-500 text-white p-4 rounded-md"
+            >
+              Find User
+            </Link>
           </div>
         </div>
+        <div className="relative overflow-x-auto shadow-md rounded-lg">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-black">
+            <thead className="text-xs text-white font-semibold uppercase bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA]">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Email
+                </th>
+
+                <th scope="col" className="px-6 py-3">
+                  First Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Last Name
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Phone
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  <span className="sr-only">Generate QR</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredData && filteredData.length === 0 ? (
+                <tr className="bg-white border-b hover:bg-gray-200">
+                  <td colSpan={6} className="text-center py-4">
+                    No data found
+                  </td>
+                </tr>
+              ) : (
+                filteredData &&
+                filteredData.map((data: any) => (
+                  <tr
+                    key={data.ID}
+                    className="bg-white border-b hover:bg-gray-200"
+                  >
+                    <td
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black"
+                    >
+                      {data.EMAIL}
+                    </td>
+                    <td className="px-6 py-4">{data.FIRSTNAME}</td>
+                    <td className="px-6 py-4">{data.LASTNAME}</td>
+                    <td className="px-6 py-4">{data.PHONE}</td>
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={() => {
+                          setIsOpenPopUp(!isOpenPopUp), setValueDataToQR(data);
+                        }}
+                        title="Generate QR"
+                        className="text-blue-500 hover:text-blue-800 flex flex-row justify-center items-center"
+                      >
+                        <BsQrCode size={25} />
+                      </button>
+                      {isOpenPopUp && (
+                        <div>
+                          <Generate
+                            btnOnClick={() => setIsOpenPopUp(false)}
+                            btnCheckIn={checkInPrintQR}
+                            //@ts-ignore
+                            qrData={valueDataToQR}
+                          />
+                        </div>
+                      )}
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex justify-center md:justify-end py-4">
+          <Pagination
+            page={page}
+            perPage={perPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
+      </div>
     </Layout>
   );
 }

@@ -15,6 +15,7 @@ const nextConfig = {
   },
   env: {
     SECRET_KEY: process.env.SECRET_KEY,
+    GOOGLE_SHEET_ADDCHECKIN: process.env.GOOGLE_SHEET_ADDCHECKIN,
   },
 };
 

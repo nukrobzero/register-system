@@ -45,10 +45,7 @@ export default function TableDefault({ page }: Props) {
     checkInData.append("CHECKIND1", timestamp);
 
     try {
-      await axios.post(
-        "https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=addCheckIn",
-        checkInData
-      );
+      await axios.post(`${process.env.GOOGLE_SHEET_ADDCHECKIN}`, checkInData);
     } catch (error) {
       console.log(error);
     }
