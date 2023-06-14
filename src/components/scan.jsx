@@ -44,7 +44,14 @@ export default function Scanner({ titlePage, apiURL, backURL }) {
       headers: { Authorization: `Bearer ${process.env.SECRET_KEY}` },
     });
     setButton(false);
-    router.reload();
+    if (button === false) {
+      setShowModal(false);
+      router.reload();
+    } else {
+      setButton(false);
+      setShowModal(false);
+      router.reload();
+    }
   };
 
   return (
