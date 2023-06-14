@@ -112,7 +112,7 @@ export default function Home() {
       <div className="flex flex-col justify-center h-auto pt-12 pb-20 w-80 md:w-[45rem] lg:w-[50rem]">
         <div className="flex justify-center">
           <Image
-            src={`https://www.sumipol.com/wp-content/uploads/2023/05/banner-SxM-2-1.png.webp`}
+            src={`/banner-SxM-3-1536x582.webp`}
             width={1920}
             height={500}
             alt="bg-cover"
