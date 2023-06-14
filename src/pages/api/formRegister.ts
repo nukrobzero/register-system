@@ -86,7 +86,7 @@ export default async function handler(
     formData.append("Choice8", checkbox8);
     try {
       const response = await axios.post(
-        `https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=addData`,
+        `${process.env.GOOGLE_SHEET_REGISTER}`,
         formData
       );
       if (response.data === "Record with email already exists") {

@@ -47,7 +47,7 @@ export default async function handler(
 
     try {
       const response = await axios.post(
-        `https://script.google.com/macros/s/AKfycbyljUagK86FuVBmphMKO17maF2Zgq2OOB6ZpFMEL1lNuv8RCc4UewwQ1N35ybd-JOMA/exec?action=addData`,
+        `${process.env.GOOGLE_SHEET_PRODUCTS}`,
         formData
       );
       console.log(response);
