@@ -40,15 +40,11 @@ export default function Scanner({ titlePage, apiURL, backURL }) {
       email: data,
       detail,
     };
-    await axios.post(apiURL, formData, {
+    const res = await axios.post(apiURL, formData, {
       headers: { Authorization: `Bearer ${process.env.SECRET_KEY}` },
     });
 
-    if (button === true) {
-      setButton(false);
-      setShowModal(false);
-      router.reload();
-    } else {
+    if (res.data === "Data added") {
       setButton(false);
       setShowModal(false);
       router.reload();
