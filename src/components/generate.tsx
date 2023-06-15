@@ -2,6 +2,7 @@ import { useReactToPrint } from "react-to-print";
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AiFillCloseCircle } from "react-icons/ai";
+import QRCode from 'qrcode'
 
 interface Props {
   btnOnClick: any;

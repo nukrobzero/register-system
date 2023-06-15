@@ -73,7 +73,7 @@ export default function TableDefault({ page }: Props) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Logo-SMP-Agile-Technology.png" />
       </Head>
-      <div className="flex flex-col justify-center max-w-6xl mx-auto px-4 py-6 pb-10 w-full">
+      <div className="flex flex-col justify-center max-w-7xl mx-auto px-4 py-6 pb-10 w-full">
         <h1 className="uppercase font-bold bg-gradient-to-r from-[#0083CA] via-green-400 to-[#0083CA] text-white py-1 px-4 rounded-md shadow-lg">
           Find User
         </h1>
