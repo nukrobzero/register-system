@@ -22,7 +22,7 @@ The registration system has 3 strengths
 
 ## Features
 
-- Send Email after register success
+- Genarate QRCode and send Email after register success
 - Scan QRCode From camera in web browser and send data to google sheets
 - Show list data register from google sheets
 - Can Print and checkin 
