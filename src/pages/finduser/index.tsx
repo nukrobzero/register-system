@@ -184,9 +184,7 @@ export default function TableDefault({ page }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const getList = await axios.get(
-    `https://script.google.com/macros/s/AKfycbw84TGAE4HrSICBImElMxBpo0VmYMuR8S5NBUyVuCPaZfpCpGTN_jpsSZ_TkFodED5i/exec?action=getData`
-  );
+  const getList = await axios.get(`${process.env.GOOGLE_SHEET}getData`);
   const list = getList.data;
 
   return {
